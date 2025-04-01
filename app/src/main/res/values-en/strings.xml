@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--Добавь поддержку английского языка.-->
+    <string name="main_string">Hello, world!</string>
+    <string name="user_welcoming">Hi, %s!</string>
+    <string name="button_name">Continue</string>
+    <string name="show">Show text</string>
+    <string name="edit_text">Enter text</string>
+</resources>

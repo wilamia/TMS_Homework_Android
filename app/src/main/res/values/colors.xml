@@ -2,4 +2,7 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <!--Определи цвет #FF5722 в ресурсах и используй его в TextView.-->
+    <color name="main_color">#FF5722</color>
+    <color name="violet">#6200EE</color>
 </resources>

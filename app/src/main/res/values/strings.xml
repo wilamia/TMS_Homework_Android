@@ -1,3 +1,9 @@
 <resources>
-    <string name="app_name">StudyingProject</string>
+    <string name="app_name" translatable="false">StudyingProject</string>
+     <!--Вынеси строку "Привет, мир!" в ресурсы и используй её в TextView.-->
+    <string name="main_string">Привет, мир!</string>
+    <string name="user_welcoming">"Привет, %s!</string>
+    <string name="button_name">Продолжить</string>
+    <string name="show">Показать текст</string>
+    <string name="edit_text">Введите текст</string>
 </resources>

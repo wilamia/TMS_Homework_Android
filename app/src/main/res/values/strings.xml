@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">StudyingProject</string>
+    <string name="my_first_string">My first string</string>
+    <string name="my_second_string">My second string</string>
 </resources>

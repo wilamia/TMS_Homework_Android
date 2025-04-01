@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Учебный проект</string>
+    <string name="my_first_string">Моя первая строка</string>
+    <string name="my_second_string">Моя вторая строка</string>
+</resources>

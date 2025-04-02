@@ -1,0 +1,26 @@
+package com.example.studyingproject
+
+import android.os.Bundle
+import android.widget.TextView
+import androidx.activity.enableEdgeToEdge
+import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
+import com.example.studyingproject.MainActivity.Companion.USERNAME_KEY
+
+class SecondActivity : AppCompatActivity() {
+    private var textView: TextView? = null
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        enableEdgeToEdge()
+        setContentView(R.layout.activity_second)
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
+            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
+            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
+            insets
+        }
+        textView = findViewById(R.id.second_textView)
+        val username = intent.getStringExtra(USERNAME_KEY) ?: String.empty
+        textView?.text = username
+    }
+}

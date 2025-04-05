@@ -2,28 +2,29 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".MyFragment"
+    android:background="@color/white">
 
+    <!-- TODO: Update blank fragment layout -->
     <Button
-        android:id="@+id/button"
+        android:id="@+id/moveBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Move to second activity"
+        android:text="Move to other fragment"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <androidx.fragment.app.FragmentContainerView
-        android:id="@+id/container"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:name="com.example.studyingproject.MyFragment"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        app:layout_constraintEnd_toEndOf="@+id/moveBtn"
+        app:layout_constraintStart_toStartOf="@+id/moveBtn"
+        app:layout_constraintTop_toBottomOf="@+id/moveBtn" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

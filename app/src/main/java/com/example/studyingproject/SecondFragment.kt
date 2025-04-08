@@ -44,7 +44,4 @@ class SecondFragment : Fragment() {
         }
     }
 
-    companion object {
-
-    }
 }

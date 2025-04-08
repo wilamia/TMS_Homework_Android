@@ -7,35 +7,39 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
+import androidx.navigation.NavController
+import androidx.navigation.fragment.findNavController
+import androidx.viewbinding.ViewBinding
+import com.example.studyingproject.databinding.FragmentFirstBinding
 
 class FirstFragment : Fragment() {
 
-    private var button: Button? = null
-    private var text:EditText? = null
+    private var navController: NavController? = null
+
+    private var viewBinding: FragmentFirstBinding? = null
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_first, container, false)
+        viewBinding = FragmentFirstBinding.inflate(inflater, container, false)
+        return viewBinding?.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        navController = findNavController()
+        setupView()
+    }
 
-        button = view.findViewById(R.id.button)
-        text = view.findViewById(R.id.editText)
-        val username = text?.text.toString()
-        button?.setOnClickListener {
-            navigateToSecondFragment(username)
+    private fun setupView() {
+        viewBinding?.button?.setOnClickListener {
+            navigateToSecondFragment()
         }
     }
 
-    private fun navigateToSecondFragment(text: String) {
-        parentFragmentManager.beginTransaction()
-            .replace(R.id.container, SecondFragment().getInstance(text))
-            .addToBackStack(null)
-            .commit()
+    private fun navigateToSecondFragment() {
+        navController?.navigate(R.id.action_firstFragment_to_secondFragment)
     }
 
     companion object {

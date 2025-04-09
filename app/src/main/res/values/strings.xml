@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">StudyingProject</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="first_button_fragment">Switch to details</string>
+    <string name="second_button_fragment">Switch to settings</string>
+    <string name="editText">Enter username</string>
+    <string name="reeditText">Change text</string>
+    <string name="language">Language page</string>
+    <string name="goToView">Switch to dynamic view</string>
 </resources>

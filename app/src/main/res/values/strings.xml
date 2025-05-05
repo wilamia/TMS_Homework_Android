@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">StudyingProject</string>
+    <string name="timer_was_stopped">Timer was stopped</string>
 </resources>

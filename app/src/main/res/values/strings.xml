@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">StudyingProject</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="enter_your_product">Enter your product...</string>
+    <string name="add_note">Add note</string>
 </resources>

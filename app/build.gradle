@@ -30,6 +30,16 @@ android {
     kotlinOptions {
         jvmTarget = '11'
     }
+    buildFeatures {
+        viewBinding = true
+    }
+
+
+//    android {
+//        defaultConfig {
+//            buildConfigField("String", "API_KEY", "$ApiKey")
+//        }
+//    }
 }
 
 dependencies {

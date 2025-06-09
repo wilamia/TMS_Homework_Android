@@ -15,8 +15,8 @@ class ProductRepositoryImpl(private val api: FakeStoreApi) : ProductRepository {
         return api.updateProduct(product.id, dto).toDomain()
     }
 
-    override suspend fun addToCart(userId: Int, productId: Int) {
-        val cart = CartRequest(userId, "2025-05-26", listOf(CartProduct(productId, 1)))
+    override suspend fun addToCart(userId: Int, productId: Int, cartId: Int) {
+        val cart = CartRequest(userId = userId, date = "2025-05-26", products = listOf(CartProduct(productId, 1, cartId = cartId),))
         api.addToCart(cart)
     }
 

@@ -1,5 +1,7 @@
 package com.example.studyingproject.di
 
+import android.content.Context
+import android.content.SharedPreferences
 import com.example.studyingproject.data.FakeStoreApi
 import com.example.studyingproject.data.Product
 import com.example.studyingproject.domain.CartRepository
@@ -10,6 +12,7 @@ import com.example.studyingproject.domain.ProductRepositoryImpl
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
+import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -44,5 +47,11 @@ object AppModule {
     @Singleton
     fun provideProductDetailUseCase(repository: ProductRepository): ProductDetailUseCase {
         return ProductDetailUseCase(repository)
+    }
+
+    @Provides
+    @Singleton
+    fun provideSharedPreferences(@ApplicationContext context: Context): SharedPreferences {
+        return context.getSharedPreferences("my_prefs", Context.MODE_PRIVATE)
     }
 }

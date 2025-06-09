@@ -1,7 +1,10 @@
 package com.example.studyingproject.data
 
+import androidx.room.*
+
+@Entity
 data class Product(
-    val id: Int,
+    @PrimaryKey(autoGenerate = true) val id: Int = 0,
     val title: String,
     val price: Double,
     val description: String,

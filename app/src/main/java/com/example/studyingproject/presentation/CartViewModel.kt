@@ -1,5 +1,6 @@
 package com.example.studyingproject.presentation
 
+import android.content.SharedPreferences
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -14,21 +15,25 @@ import kotlinx.coroutines.withContext
 
 @HiltViewModel
 class CartViewModel @Inject constructor(
-    private val repository: CartRepository
+    private val repository: CartRepository,
+    private val sharedPreferences: SharedPreferences
 ) : ViewModel() {
     private val _cartItems = MutableLiveData<List<Product>>()
     val cartItems: LiveData<List<Product>> = _cartItems
+    val userId = sharedPreferences.getInt("user_id", -1)
 
     fun loadCartItems() {
         viewModelScope.launch {
-            _cartItems.value = repository.getCartItems()
+            if (userId != -1) {
+                _cartItems.value = repository.getCartItems(userId)
+            }
         }
     }
 
     fun removeFromCart(cartId: Int) {
         viewModelScope.launch {
             repository.removeFromCart(cartId)
-            val updatedItems = withContext(Dispatchers.IO) { repository.getCartItems() }
+            val updatedItems = withContext(Dispatchers.IO) { repository.getCartItems(userId) }
             _cartItems.value = updatedItems
         }
     }

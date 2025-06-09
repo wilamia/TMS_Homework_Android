@@ -1,5 +1,6 @@
 package com.example.studyingproject.presentation
 
+import android.content.SharedPreferences
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -13,7 +14,8 @@ import kotlinx.coroutines.launch
 
 @HiltViewModel
 class ProductDetailViewModel @Inject constructor(
-    private val useCase: ProductDetailUseCase
+    private val useCase: ProductDetailUseCase,
+    private val sharedPreferences: SharedPreferences
 ) : ViewModel() {
     val product = MutableLiveData<Product>()
 
@@ -29,9 +31,12 @@ class ProductDetailViewModel @Inject constructor(
         }
     }
 
-    fun addToCart(userId: Int, productId: Int) {
-        viewModelScope.launch {
-            useCase.addToCart(userId, productId)
+    fun addToCart(productId: Int, cartId: Int) {
+        val userId = sharedPreferences.getInt("user_id", -1)
+        if (userId != -1) {
+            viewModelScope.launch {
+                useCase.addToCart(userId, productId, cartId)
+            }
         }
     }
 

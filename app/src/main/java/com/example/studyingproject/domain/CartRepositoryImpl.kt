@@ -6,8 +6,7 @@ import com.example.studyingproject.data.Product
 
 class CartRepositoryImpl(private val api: FakeStoreApi) : CartRepository {
 
-    override suspend fun getCartItems(): List<Product> {
-        val userId = 1
+    override suspend fun getCartItems(userId: Int): List<Product> {
         val cartResponse = api.getCartItems(userId)
 
         val allProducts = api.getProducts().map { it.toDomain() }

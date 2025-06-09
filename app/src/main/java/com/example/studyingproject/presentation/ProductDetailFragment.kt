@@ -20,6 +20,7 @@ class ProductDetailFragment : Fragment() {
     private lateinit var binding: FragmentDetailBinding
     private val viewModel: ProductDetailViewModel by viewModels()
     private var productId: Int = 0
+    private var cartId: Int = 0
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -51,7 +52,7 @@ class ProductDetailFragment : Fragment() {
         }
 
         binding.addToCartButton.setOnClickListener {
-            viewModel.addToCart(1, productId)
+            viewModel.addToCart(productId, cartId)
         }
 
         binding.bottomNavigationView.setOnItemSelectedListener { item ->

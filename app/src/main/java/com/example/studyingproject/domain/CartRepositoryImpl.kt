@@ -3,8 +3,10 @@ package com.example.studyingproject.domain
 import com.example.studyingproject.data.CartResponseDto
 import com.example.studyingproject.data.FakeStoreApi
 import com.example.studyingproject.data.Product
+import okhttp3.OkHttpClient
+import javax.inject.Inject
 
-class CartRepositoryImpl(private val api: FakeStoreApi) : CartRepository {
+class CartRepositoryImpl @Inject constructor(private val api: FakeStoreApi) : CartRepository {
 
     override suspend fun getCartItems(userId: Int): List<Product> {
         val cartResponse = api.getCartItems(userId)
@@ -24,4 +26,5 @@ class CartRepositoryImpl(private val api: FakeStoreApi) : CartRepository {
             productsMap[cartProduct.productId]?.copy(quantity = cartProduct.quantity)
         }
     }
+
 }

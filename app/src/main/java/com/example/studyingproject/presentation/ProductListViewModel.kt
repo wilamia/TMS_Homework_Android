@@ -19,7 +19,7 @@ class ProductListViewModel @Inject constructor(
 ) : ViewModel() {
     val products = MutableLiveData<List<Product>>()
     init {
-        sharedPreferences.edit().putInt("user_id",  0).apply()
+        sharedPreferences.edit().putInt("user_id", 1).apply()
     }
     fun fetchProducts() {
         viewModelScope.launch {

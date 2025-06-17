@@ -32,7 +32,7 @@ class ProductDetailViewModel @Inject constructor(
     }
 
     fun addToCart(productId: Int, cartId: Int) {
-        val userId = sharedPreferences.getInt("user_id", -1)
+        val userId = sharedPreferences.getInt("user_id", 1)
         if (userId != -1) {
             viewModelScope.launch {
                 useCase.addToCart(userId, productId, cartId)

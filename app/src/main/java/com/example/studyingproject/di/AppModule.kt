@@ -14,6 +14,7 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
+import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import javax.inject.Singleton
@@ -23,12 +24,31 @@ import javax.inject.Singleton
 object AppModule {
     @Provides
     @Singleton
-    fun provideFakeStoreApi(): FakeStoreApi {
+    fun provideOkHttpClient(): OkHttpClient {
+        return OkHttpClient.Builder()
+            .addInterceptor { chain ->
+                val request = chain.request().newBuilder()
+                    .header("Cache-Control", "no-cache")
+                    .build()
+                chain.proceed(request)
+            }
+            .build()
+    }
+
+    @Provides
+    @Singleton
+    fun provideRetrofit(client: OkHttpClient): Retrofit {
         return Retrofit.Builder()
             .baseUrl("https://fakestoreapi.com/")
+            .client(client)
             .addConverterFactory(GsonConverterFactory.create())
             .build()
-            .create(FakeStoreApi::class.java)
+    }
+
+    @Provides
+    @Singleton
+    fun provideFakeStoreApi(retrofit: Retrofit): FakeStoreApi {
+        return retrofit.create(FakeStoreApi::class.java)
     }
 
     @Provides

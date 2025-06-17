@@ -20,21 +20,26 @@ class CartViewModel @Inject constructor(
 ) : ViewModel() {
     private val _cartItems = MutableLiveData<List<Product>>()
     val cartItems: LiveData<List<Product>> = _cartItems
-    val userId = sharedPreferences.getInt("user_id", -1)
+    val userId = sharedPreferences.getInt("user_id", 1)
 
     fun loadCartItems() {
         viewModelScope.launch {
             if (userId != -1) {
                 _cartItems.value = repository.getCartItems(userId)
+            } else {
+                _cartItems.value = emptyList()
             }
         }
     }
 
     fun removeFromCart(cartId: Int) {
-        viewModelScope.launch {
+        viewModelScope.launch(Dispatchers.IO) {
             repository.removeFromCart(cartId)
-            val updatedItems = withContext(Dispatchers.IO) { repository.getCartItems(userId) }
-            _cartItems.value = updatedItems
+            val updatedItems = repository.getCartItems(userId)
+            withContext(Dispatchers.Main) {
+                _cartItems.value = updatedItems
+            }
         }
+
     }
 }

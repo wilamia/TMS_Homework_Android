@@ -17,7 +17,7 @@ class MainActivity : AppCompatActivity() {
         enableEdgeToEdge()
         setContentView(R.layout.activity_main)
 
-       component = DaggerAppComponent.create()
+       component = DaggerAppComponent.factory().create(applicationContext, "ads", "sdcds")
         component.inject(this)
 
         getInfo()

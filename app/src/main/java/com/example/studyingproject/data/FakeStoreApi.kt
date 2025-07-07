@@ -15,11 +15,10 @@ interface FakeStoreApi {
     @GET("products/{id}")
     suspend fun getProduct(@Path("id") id: Int): ProductDto
 
-    @POST("carts")
-    suspend fun addToCart(@Body cart: CartRequest): Response<Unit>
 
-    @DELETE("carts/{id}")
-    suspend fun removeFromCart(@Path("id") id: Int): Response<Unit>
+    @PUT("carts/{id}")
+    suspend fun updateCart(@Path("id") id: Int, @Body cart: CartRequest): CartResponseDto
+
 
     @PUT("products/{id}")
     suspend fun updateProduct(@Path("id") id: Int, @Body product: ProductDto): ProductDto

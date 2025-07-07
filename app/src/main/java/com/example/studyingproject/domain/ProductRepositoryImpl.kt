@@ -5,8 +5,12 @@ import com.example.studyingproject.data.CartRequest
 import com.example.studyingproject.data.FakeStoreApi
 import com.example.studyingproject.data.Product
 import com.example.studyingproject.data.ProductDto
+import com.example.studyingproject.di.SecondApi
+import javax.inject.Inject
 
-class ProductRepositoryImpl(private val api: FakeStoreApi) : ProductRepository {
+class ProductRepositoryImpl @Inject constructor(
+    @SecondApi private val api: FakeStoreApi) :
+    ProductRepository {
     override suspend fun getProducts() = api.getProducts().map { it.toDomain() }
     override suspend fun getProduct(id: Int) = api.getProduct(id).toDomain()
     override suspend fun updateProduct(product: Product): Product {
@@ -15,12 +19,4 @@ class ProductRepositoryImpl(private val api: FakeStoreApi) : ProductRepository {
         return api.updateProduct(product.id, dto).toDomain()
     }
 
-    override suspend fun addToCart(userId: Int, productId: Int) {
-        val cart = CartRequest(userId, "2025-05-26", listOf(CartProduct(productId, 1)))
-        api.addToCart(cart)
-    }
-
-    override suspend fun removeFromCart(cartId: Int) {
-        api.removeFromCart(cartId)
-    }
 }

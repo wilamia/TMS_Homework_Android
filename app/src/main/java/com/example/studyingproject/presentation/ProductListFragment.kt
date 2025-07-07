@@ -1,23 +1,31 @@
 package com.example.studyingproject.presentation
 
+import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.studyingproject.MainActivity
 import com.example.studyingproject.R
 import com.example.studyingproject.databinding.FragmentProductBinding
+import com.example.studyingproject.di.DaggerViewModelFactory
 import com.example.studyingproject.presentation.adapter.ProductAdapter
-import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
-@AndroidEntryPoint
 class ProductListFragment : Fragment() {
    private lateinit var binding: FragmentProductBinding
-    private val viewModel: ProductListViewModel by viewModels()
+    @Inject  lateinit var viewModelFactory: DaggerViewModelFactory
+    private val viewModel: ProductListViewModel by viewModels { viewModelFactory }
     private lateinit var adapter: ProductAdapter
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        (requireActivity() as MainActivity).component.inject(this)
+    }
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?

@@ -19,6 +19,7 @@ navigation-safe-args-version = "2.9.0"
 hiltAndroidVersion = "2.56.2"
 hiltCompiler = "1.2.0"
 navigationUiKtx = "2.9.0"
+firebaseComponents = "18.0.1"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -43,6 +44,7 @@ dagger-hilt-android = { module = "com.google.dagger:hilt-android", version.ref =
 hilt-compiler = { module = "com.google.dagger:hilt-compiler", version.ref = "hiltAndroidVersion" }
 moshi = { module = "com.squareup.moshi:moshi", version.ref = "moshi" }
 retrofit = { module = "com.squareup.retrofit2:retrofit", version.ref = "converterGson" }
+firebase-components = { group = "com.google.firebase", name = "firebase-components", version.ref = "firebaseComponents" }
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
 kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }

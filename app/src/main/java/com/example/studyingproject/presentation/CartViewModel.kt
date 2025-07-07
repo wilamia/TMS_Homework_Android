@@ -4,15 +4,14 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.studyingproject.data.CartProduct
 import com.example.studyingproject.data.Product
 import com.example.studyingproject.domain.CartRepository
-import dagger.hilt.android.lifecycle.HiltViewModel
-import jakarta.inject.Inject
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import javax.inject.Inject
 
-@HiltViewModel
 class CartViewModel @Inject constructor(
     private val repository: CartRepository
 ) : ViewModel() {
@@ -21,15 +20,16 @@ class CartViewModel @Inject constructor(
 
     fun loadCartItems() {
         viewModelScope.launch {
-            _cartItems.value = repository.getCartItems()
+            val items = repository.getCartItems()
+            _cartItems.postValue(items)
         }
     }
 
-    fun removeFromCart(cartId: Int) {
+    fun removeFromCart(userId: Int, productId: Int) {
         viewModelScope.launch {
-            repository.removeFromCart(cartId)
-            val updatedItems = withContext(Dispatchers.IO) { repository.getCartItems() }
-            _cartItems.value = updatedItems
+            repository.removeFromCart(userId, productId)
+            loadCartItems()  // обновляем список после удаления
         }
     }
+
 }

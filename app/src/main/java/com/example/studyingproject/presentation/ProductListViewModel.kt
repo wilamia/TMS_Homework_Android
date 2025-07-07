@@ -6,11 +6,11 @@ import androidx.lifecycle.viewModelScope
 import com.example.studyingproject.data.Product
 import com.example.studyingproject.domain.ProductRepository
 import com.example.studyingproject.domain.ProductRepositoryImpl
-import dagger.hilt.android.lifecycle.HiltViewModel
-import jakarta.inject.Inject
-import kotlinx.coroutines.launch
 
-@HiltViewModel
+import kotlinx.coroutines.launch
+import javax.inject.Inject
+
+
 class ProductListViewModel @Inject constructor(
     private val repository: ProductRepository
 ) : ViewModel() {

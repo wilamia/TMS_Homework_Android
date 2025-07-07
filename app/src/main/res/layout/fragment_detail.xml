@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".presentation.ProductDetailFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/image"
+            android:layout_width="wrap_content"
+            android:layout_height="270dp"
+            android:scaleType="fitCenter"
+            android:layout_gravity="center"/>
+
+        <EditText
+            android:id="@+id/title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/title"
+            android:layout_gravity="center"
+            android:inputType="text"
+            android:layout_marginTop="20dp" />
+
+        <EditText
+            android:id="@+id/price"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/price"
+            android:inputType="numberDecimal"
+            android:layout_marginTop="12dp" />
+
+        <EditText
+            android:id="@+id/description"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/description"
+            android:inputType="textMultiLine"
+            android:lines="4"
+            android:minLines="3"
+            android:gravity="top"
+            android:layout_marginTop="12dp" />
+
+        <Button
+            android:id="@+id/updateButton"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:text="Update Product"
+            android:layout_gravity="center"
+            android:layout_marginTop="24dp" />
+
+        <Button
+            android:id="@+id/addToCartButton"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:text="Add to Cart"
+            android:layout_gravity="center"
+            android:layout_marginTop="12dp" />
+
+    </LinearLayout>
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottomNavigationView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:layout_marginTop="8dp"
+        android:background="@color/material_dynamic_neutral_variant50"
+        android:layout_alignParentBottom="true"
+        android:elevation="8dp"
+        app:menu="@menu/bottom_nav_menu" />
+</FrameLayout>

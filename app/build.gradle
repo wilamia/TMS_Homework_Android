@@ -1,6 +1,8 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
+    alias(libs.plugins.navigation.safeargs.kotlin)
+    id("com.google.devtools.ksp")
 }
 
 android {
@@ -30,10 +32,27 @@ android {
     kotlinOptions {
         jvmTarget = '11'
     }
+    buildFeatures {
+        viewBinding = true
+    }
 }
 
 dependencies {
-
+    implementation("com.google.devtools.ksp:symbol-processing-api:2.1.20-2.0.0")
+    implementation("com.google.dagger:dagger:2.51")
+    implementation libs.firebase.components
+    ksp("com.google.dagger:dagger-compiler:2.56.2")
+    implementation (libs.androidx.fragment.ktx)
+    implementation libs.retrofit
+    implementation libs.converter.moshi
+    implementation libs.moshi
+    implementation libs.kotlinx.coroutines.android
+    implementation libs.androidx.lifecycle.viewmodel.ktx
+    implementation libs.androidx.lifecycle.livedata.ktx
+    implementation libs.coil
+    implementation libs.androidx.navigation.fragment.ktx
+    implementation libs.androidx.navigation.ui.ktx
+    implementation libs.converter.gson
     implementation libs.androidx.core.ktx
     implementation libs.androidx.appcompat
     implementation libs.material
